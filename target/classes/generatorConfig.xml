@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <context id="msqlTables" targetRuntime="MyBatis3" >
+        <!--添加序列化-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <!--数据库连接-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/shop?useSSL=false&amp;serverTimezone=Asia/Shanghai" userId="root" password="123456">
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+        <!--pojo文件生成-->
+        <javaModelGenerator targetPackage="com.yang.pojo" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--maper映射文件生成-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--指定mapper接口 dao层-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yang.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+
+        </javaClientGenerator>
+        <!--指定要逆向分析生成的表-->
+        <table tableName="user"  domainObjectName="User"/>
+    </context>
+</generatorConfiguration>
